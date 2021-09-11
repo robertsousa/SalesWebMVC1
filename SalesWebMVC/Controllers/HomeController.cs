@@ -25,8 +25,13 @@ namespace SalesWebMVC.Controllers
 
         public IActionResult Privacy()
         {
+            ViewData["Message"] = "Your application description page.";
+            ViewData["email"] = "robert6257@gmail.com";
+
             return View();
         }
+
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
