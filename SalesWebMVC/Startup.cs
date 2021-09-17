@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Models;
+using SalesWebMVC.Data;
 
 namespace SalesWebMVC
 {
@@ -18,6 +19,7 @@ namespace SalesWebMVC
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -27,9 +29,11 @@ namespace SalesWebMVC
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SalesWebMVCContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SalesWebMVCContext"), builder => 
-                    builder.MigrationsAssembly("SalesWebMVC")));
+            services.AddDbContext<SalesWebMVCContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("SalesWebMVCContext")));
+            
+            //services.AddScoped<SeedingService>();
+            //services.AddScoped<DbInitialize>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +42,7 @@ namespace SalesWebMVC
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+               // seedingService.Seed();
             }
             else
             {
