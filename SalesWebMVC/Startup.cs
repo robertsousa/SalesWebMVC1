@@ -33,7 +33,6 @@ namespace SalesWebMVC
                 options.UseSqlServer(Configuration.GetConnectionString("SalesWebMVCContext")));
             
             //services.AddScoped<SeedingService>();
-            //services.AddScoped<DbInitialize>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
